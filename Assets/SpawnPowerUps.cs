@@ -21,8 +21,9 @@ public class SpawnPowerUps : MonoBehaviour
         Bounds bounds = this.Grid.bounds;
         float x = Random.Range(bounds.min.y, bounds.max.x);
         float y = Random.Range(bounds.min.y, bounds.max.y);
-        int Randomindex = Random.Range(0, prefabs.Length - 1);
+        int Randomindex = Random.Range(0, prefabs.Length );
         Vector3 pos = new Vector3(Mathf.Round(x), Mathf.Round(y), 0.0f);
         Instantiate(prefabs[Randomindex].gameObject, pos, Quaternion.identity);
+        Debug.Log(Randomindex);
     }
 }

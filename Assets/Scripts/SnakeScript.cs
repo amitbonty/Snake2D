@@ -14,6 +14,7 @@ public class SnakeScript : MonoBehaviour
     public static int score = 0;
     public TextMeshProUGUI scoreText1, scoreText2;
     public int multiplier;
+    public static bool isShielded,scoreMultiplier;
     private void Start()
     {
         _segments = new List<Transform>();
@@ -60,16 +61,32 @@ public class SnakeScript : MonoBehaviour
         this.transform.position = new Vector3(Mathf.Round(this.transform.position.x) + _direction.x, Mathf.Round(this.transform.position.y) + _direction.y, 0.0f);
 
     }
+    IEnumerator Shieldon()
+    {
+        isShielded = true;
+        this.GetComponent<SpriteRenderer>().color = Color.blue;
+        yield return new WaitForSeconds(5f);
+        isShielded = false;
+        this.GetComponent<SpriteRenderer>().color = Color.green;
+    }
+    IEnumerator Score()
+    {
+        scoreMultiplier = true;
+        this.GetComponent<SpriteRenderer>().color = Color.cyan;
+        yield return new WaitForSeconds(10f);
+        scoreMultiplier = false;
+        this.GetComponent<SpriteRenderer>().color = Color.green;
+    }
     private void Grow()
     {
         Transform segment = Instantiate(this.snake_body);
         segment.position = _segments[_segments.Count - 1].position;
         _segments.Add(segment);
-        if(MultiplyScore.scoreMultiplier)
+        if(scoreMultiplier)
         {
             score +=  (multiplier * 1);
         }
-        else if(!MultiplyScore.scoreMultiplier)
+        else if(!scoreMultiplier)
         {
             score++;
         }
@@ -104,13 +121,23 @@ public class SnakeScript : MonoBehaviour
         {
             this.transform.position = new Vector3(-(this.transform.position.x + 1), this.transform.position.y, 0.0f);
         }
+        else if (other.tag == "Shield")
+        {
+            StartCoroutine(Shieldon());
+            Debug.Log("Shield called!");
+        }
+        else if (other.tag == "Multiplier")
+        {
+            StartCoroutine(Score());
+            Debug.Log("Shield called!");
+        }
         else if (other.gameObject.GetComponent<Poison>())
         {
             SnakePoison();
         }
         else if (other.tag == "obstacle")
         {
-            if (!Shield.isShielded)
+            if (!isShielded)
             {
                 ResetState();
                 Time.timeScale = 0;
@@ -144,6 +171,8 @@ public class SnakeScript : MonoBehaviour
     }
     private void ResetState()
     {
+        isShielded = false;
+        scoreMultiplier = false;
         for(int i =1; i< _segments.Count; i++)
         {
             Destroy(_segments[i].gameObject);

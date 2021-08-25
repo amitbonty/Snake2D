@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6684732996945662495}
   - component: {fileID: 6684732996945662492}
   - component: {fileID: 6684732996945662493}
-  - component: {fileID: 6684732996945662466}
+  - component: {fileID: 9003902609813084130}
   m_Layer: 0
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7646838bf07d2144b83e3ec04310362f, type: 3}
-  m_Color: {r: 0.08235295, g: 0.9254902, b: 0.795839, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,7 +100,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 5}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -109,7 +109,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &6684732996945662466
+--- !u!114 &9003902609813084130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,8 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Grid: {fileID: 0}
-  Invoketime: 10
-  repeatRate: 10
+  Invoketime: 0
+  repeatRate: 0
   shields1: {fileID: 0}
-  shields2: {fileID: 2651724084499810622, guid: 51ccdcd44c7060d4d8fd4689b18cf6fa,
-    type: 3}
