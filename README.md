@@ -1,4 +1,4 @@
 # Snake2D
 Replica of classic snake game.
--Implemented data structure to create snake body.
--Implemented different types of power ups and debuffs.
+<br>-Implemented data structure to create snake body.
+<br>-Implemented different types of power ups and debuffs.
